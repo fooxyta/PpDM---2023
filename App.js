@@ -4,11 +4,11 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 import { NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function TelaCapa(){
+function TelaInicial(){
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Text>Essa é a tela de início</Text>
+      <Text>Aqui você faz seu cadastro</Text>
       <Button title="Cadastrar" onPress={()=>{
         navigation.navigate ('Cadastro')
       }}></Button>
@@ -34,8 +34,8 @@ function TelaEsqueceuSenha(){
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Text>Essa é a tela de "esqueci a senha"</Text>
-      <Button title="Tela escolhas" onPress={()=>{
+      <Text>Essa é a tela de esqueci a senha</Text>
+      <Button title="Escolhas" onPress={()=>{
         navigation.navigate ('Escolhas')
       }}></Button>
       <StatusBar style="auto" />
@@ -49,7 +49,7 @@ function TelaEscolhas(){
     <View style={styles.container}>
       <Text>Essa é a tela principal para escolhas</Text>
       <Button title="Autores que você segue" onPress={()=>{
-        navigation.navigate ('Ver Autores')
+        navigation.navigate ('Autores que você segue')
       }}></Button>
       <StatusBar style="auto" />
     </View>
@@ -62,7 +62,7 @@ function TelaAutoresSegue(){
     <View style={styles.container}>
       <Text>Essa é a tela de autores que você segue</Text>
       <Button title="Rupi Kaur" onPress={()=>{
-        navigation.navigate ('Poesias Rupi Kaur')
+        navigation.navigate ('Rupi Kaur')
       }}></Button>
       <StatusBar style="auto" />
     </View>
@@ -75,7 +75,7 @@ function TelaAutoresSegue1(){
     <View style={styles.container}>
       <Text>Esses são os exemplos de poesias da Rupi Kaur</Text>
       <Button title="acima de tudo ame" onPress={()=>{
-        navigation.navigate ('Ler essa poesia')
+        navigation.navigate ('Conheça')
       }}></Button>
       <StatusBar style="auto" />
     </View>
@@ -87,8 +87,8 @@ function TelaConheca(){
   return (
     <View style={styles.container}>
       <Text>Essa é a tela para conhecer novos autores</Text>
-      <Button title="Pablo Neruda, Cem Sonetos de Amor..." onPress={()=>{
-        navigation.navigate ('Leia Pablo Neruda')
+      <Button title="Pablo Neruda" onPress={()=>{
+        navigation.navigate ('Pablo Neruda')
       }}></Button>
       <StatusBar style="auto" />
     </View>
@@ -100,8 +100,8 @@ function TelaConheca1(){
   return (
     <View style={styles.container}>
       <Text>Essa é a tela da poesia de Pablo Neruda</Text>
-      <Button title="Poesias do momento" onPress={()=>{
-        navigation.navigate ('Conheça as poesias do momento')
+      <Button title="Pablo Neruda, Cem Sonetos de Amor..." onPress={()=>{
+        navigation.navigate ('Poesias do momento')
       }}></Button>
       <StatusBar style="auto" />
     </View>
@@ -114,7 +114,7 @@ function TelaPoesiaMomento(){
     <View style={styles.container}>
       <Text>Essa é a tela de poesias do momento</Text>
       <Button title="Cecília Meireles: Lua adversa" onPress={()=>{
-        navigation.navigate ('Leia Cecília Meireles')
+        navigation.navigate ('Cecília Meireles')
       }}></Button>
       <StatusBar style="auto" />
     </View>
@@ -127,7 +127,7 @@ function TelaFavoritos(){
     <View style={styles.container}>
       <Text>Essa é a tela de poesias favoritadas</Text>
       <Button title="Criar Agora" onPress={()=>{
-        navigation.navigate ('Postar poesias')
+        navigation.navigate ('Criar Agora')
       }}></Button>
       <StatusBar style="auto" />
     </View>
@@ -153,46 +153,31 @@ function TelaCriarAgora1(){
     <View style={styles.container}>
       <Text>Essa é a tela para postar sua poesias </Text>
       <Button title="Perfil" onPress={()=>{
-        navigation.navigate ('Visualizar seu perfil')
+        navigation.navigate ('Inicio')
       }}></Button>
       <StatusBar style="auto" />
     </View>
   );
 }
 
-function TelaPerfil(){
-  const navigation = useNavigation();
-  return (
-    <View style={styles.container}>
-      <Text>Essa é a tela do seu perfil</Text>
-      <Button title="Voltar" onPress={()=>{
-        navigation.navigate ('Escolhas')
-      }}></Button>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
 export default function App() {
   const Stack = createNativeStackNavigator()
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Capa" component={TelaCapa} />
+        <Stack.Screen name="Inicio" component={TelaInicial} />
         <Stack.Screen name="Cadastro" component={TelaCadastro} />
-        <Stack.Screen name="Esqueceu Senha" component={TelaEsqueceuSenha} />
-        <Stack.Screen name="Principal" component={TelaPrincipal} />
+        <Stack.Screen name="Esqueci minha senha" component={TelaEsqueceuSenha} />
         <Stack.Screen name="Escolhas" component={TelaEscolhas} />
-        <Stack.Screen name="Autores Segue" component={TelaAutoresSegue} />
-        <Stack.Screen name="Segunda tela Autores segue" component={TelaAutoresSegue1} />
-        <Stack.Screen name="Autores que conhece" component={TelaConheca} />
-        <Stack.Screen name="Segunda tela Autores que conhece" component= {TelaConheca1} />
-        <Stack.Screen name="Poesias do Momento" component={TelaPoesiaMomento} />
-        <Stack.Screen name="Favoritos" component={TelaFvoritos} />
+        <Stack.Screen name="Autores que você segue" component={TelaAutoresSegue} />
+        <Stack.Screen name="Rupi Kaur" component={TelaAutoresSegue1} />
+        <Stack.Screen name="Conheça" component={TelaConheca} />
+        <Stack.Screen name="Pablo Neruda" component= {TelaConheca1} />
+        <Stack.Screen name="Poesias do momento" component={TelaPoesiaMomento} />
+        <Stack.Screen name="Cecília Meireles" component={TelaFavoritos} />
         <Stack.Screen name="Criar Agora" component={TelaCriarAgora} />
-        <Stack.Screen name="Segunda tela Criar Agora" component={TelaCriarAgora1} />
-        <Stack.Screen name="Perfil" component={TelaPerfil} />
-        <Stack.Screen name="Perfil" component={TelaPerfil} />
+        <Stack.Screen name="Avançar para postar" component={TelaCriarAgora1} />
       </Stack.Navigator>
     </NavigationContainer>
   );
