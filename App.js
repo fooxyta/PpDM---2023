@@ -1,19 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Pressable} from 'react-native';
 import { NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 function TelaInicial(){
   const navigation = useNavigation();
-  const [text, onChangeText] = React.useState("");
 
   return (
     <View style={styles.container}>
-      <Text>Essa é a tela inicial</Text>
-      <Button title="Cadastrar" onPress={()=>{
+      <Text>Seja Bem-Vindo ao Poesia...Pois, é Poesia...</Text>
+      <Pressable style={styles.button} onPress={()=>{
         navigation.navigate ('Cadastro')
-      }}></Button>
+      }}>
+        <Text>Cadastrar</Text>
+      </Pressable>
+      <Button title="Login" onPress={()=>{
+        navigation.navigate ('Login')
+        }}></Button>
       <StatusBar style="auto" />
     </View>
   );
@@ -25,7 +29,7 @@ function TelaCadastro(){
 
   return (
     <View style={styles.container}>
-      <Text>Aqui você faz seu cadastro</Text>
+      <Text>É novo por aqui? Cadastre-se!</Text>
       <TextInput
         placeholder="Nome"
         keyboardType="name"
@@ -43,6 +47,9 @@ function TelaCadastro(){
         secureTextEntry={true}
         style={styles.input}
       />
+      <Button title="Cadastrar" onPress={()=>{
+        navigation.navigate ('Login')
+      }}></Button>
       <Button title="Esqueci minha senha" onPress={()=>{
         navigation.navigate ('Esqueci minha senha')
       }}></Button>
@@ -51,11 +58,53 @@ function TelaCadastro(){
   );
 }
 
-function TelaEsqueceuSenha(){
+  function TelaLogin(){
+    const navigation = useNavigation();
+    const [text, onChangeText] = React.useState("");
+
+    return (
+      <View style={styles.container}>
+        <Text>Faça login</Text>
+        <TextInput
+        placeholder="E-mail"
+        keyboardType="name"
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Senha"
+        secureTextEntry={true}
+        style={styles.input}
+      />
+        <Button title="Logar-se" onPress={()=>{
+          navigation.navigate ('Escolhas')
+        }}></Button>
+        <StatusBar style="auto" />
+      </View>
+    );
+  }
+
+  function TelaEsqueceuSenha(){
   const navigation = useNavigation();
+  const [text, onChangeText] = React.useState("");
+
   return (
     <View style={styles.container}>
-      <Text>Essa é a tela de esqueci a senha</Text>
+      <Text>Nova senha</Text>
+      <TextInput
+        placeholder="E-mail"
+        keyboardType="name"
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Senha"
+        secureTextEntry={true}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Confirmar senha"
+        secureTextEntry={true}
+        style={styles.input}
+      />
       <Button title="Escolhas" onPress={()=>{
         navigation.navigate ('Escolhas')
       }}></Button>
@@ -187,8 +236,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Inicio" component={TelaInicial} />
+        <Stack.Screen name="Início" component={TelaInicial} />
         <Stack.Screen name="Cadastro" component={TelaCadastro} />
+        <Stack.Screen name="Login" component={TelaLogin} />
         <Stack.Screen name="Esqueci minha senha" component={TelaEsqueceuSenha} />
         <Stack.Screen name="Escolhas" component={TelaEscolhas} />
         <Stack.Screen name="Autores que você segue" component={TelaAutoresSegue} />
@@ -208,17 +258,22 @@ export default function App() {
  const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#EDDACF',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
     frontFamilly: "Arial"
   },
-    input: {
+  input: {
     height: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
-  }
+  },
+  button: {
+    backgroundColor: '#3B1B0D',
+    margin: 15,
+    padding: 10,
+   }
 });
