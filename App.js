@@ -1,14 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
 import { NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 function TelaInicial(){
   const navigation = useNavigation();
+  const [text, onChangeText] = React.useState("");
+
   return (
     <View style={styles.container}>
-      <Text>Aqui você faz seu cadastro</Text>
+      <Text>Essa é a tela inicial</Text>
       <Button title="Cadastrar" onPress={()=>{
         navigation.navigate ('Cadastro')
       }}></Button>
@@ -19,9 +21,28 @@ function TelaInicial(){
 
 function TelaCadastro(){
   const navigation = useNavigation();
+  const [text, onChangeText] = React.useState("");
+
   return (
     <View style={styles.container}>
       <Text>Aqui você faz seu cadastro</Text>
+      <TextInput
+        placeholder="Nome"
+        keyboardType="name"
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="E-mail"
+        keyboardType="email-address"
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+      />
+      <TextInput
+        placeholder="Senha"
+        secureTextEntry={true}
+        style={styles.input}
+      />
       <Button title="Esqueci minha senha" onPress={()=>{
         navigation.navigate ('Esqueci minha senha')
       }}></Button>
@@ -191,4 +212,13 @@ export default function App() {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    frontFamilly: "Arial"
+  },
+    input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  }
 });
